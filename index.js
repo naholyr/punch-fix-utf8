@@ -40,7 +40,6 @@ module.exports = {
     return fixed[path] > +mtime;
   },
   setFixed: function (path) {
-    console.error('FIXED UTF8', path);
     var fixed = this.getFixed();
     fixed[path] = Date.now();
     fs.writeFileSync(this.outputDir + '/.fix-utf8.done', JSON.stringify(fixed));

@@ -12,6 +12,7 @@ module.exports = {
 
   run: function (path, options, cb) {
     if (!~this.paths.indexOf(path)) return cb();
+    if (this.isFixed(path)) return cb();
 
     var modified = options.modified || false;
     var finished = options.finished || false;
@@ -19,7 +20,30 @@ module.exports = {
     var filepath = this.outputDir + path;
     fs.writeFileSync(filepath, fs.readFileSync(filepath, 'binary'), 'utf8');
 
+    this.setFixed(path);
+
     return cb();
+  },
+
+  // Note: we have to use a persistent registry to remember if a file was already fixed or not
+  getFixed: function () {
+    try {
+      return JSON.parse(fs.readFileSync(this.outputDir + '/.fix-utf8.done'));
+    } catch (e) {
+      return {};
+    }
+  },
+  isFixed: function (path) {
+    var fixed = this.getFixed();
+    if (!fixed[path]) return false;
+    var mtime = fs.statSync(this.outputDir + path).mtime;
+    return fixed[path] > +mtime;
+  },
+  setFixed: function (path) {
+    console.error('FIXED UTF8', path);
+    var fixed = this.getFixed();
+    fixed[path] = Date.now();
+    fs.writeFileSync(this.outputDir + '/.fix-utf8.done', JSON.stringify(fixed));
   }
 
 };

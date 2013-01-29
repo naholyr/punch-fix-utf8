@@ -1,0 +1,24 @@
+{
+  "name": "punch-utf8-fix",
+  "version": "1.0.0",
+  "description": "This generator hook will help you fix broken encoding when you generated some non HTML text file (i.e. xml, json…)",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/naholyr/punch-fix-utf8.git"
+  },
+  "keywords": [
+    "punch",
+    "utf8",
+    "hook"
+  ],
+  "author": "Nicolas Chambrier <naholyr@gmail.com>",
+  "license": "BSD",
+  "readmeFilename": "README.md",
+  "peerDependencies": {
+    "punch": "*"
+  }
+}

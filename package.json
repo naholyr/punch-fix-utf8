@@ -1,6 +1,6 @@
 {
   "name": "punch-fix-utf8",
-  "version": "2.0.1",
+  "version": "2.0.2",
   "description": "This generator hook will help you fix broken encoding when you generated some non HTML text file (i.e. xml, json…)",
   "main": "index.js",
   "scripts": {

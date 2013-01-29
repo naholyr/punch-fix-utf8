@@ -28,7 +28,7 @@ module.exports = {
   // Note: we have to use a persistent registry to remember if a file was already fixed or not
   getFixed: function () {
     try {
-      return JSON.parse(fs.readFileSync(this.outputDir + '/.fix-utf8.done'));
+      return JSON.parse(fs.readFileSync('.fix_utf8'));
     } catch (e) {
       return {};
     }
@@ -42,7 +42,7 @@ module.exports = {
   setFixed: function (path) {
     var fixed = this.getFixed();
     fixed[path] = Date.now();
-    fs.writeFileSync(this.outputDir + '/.fix-utf8.done', JSON.stringify(fixed));
+    fs.writeFileSync(this.outputDir + '.fix_utf8', JSON.stringify(fixed));
   }
 
 };

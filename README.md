@@ -37,4 +37,4 @@ Just provide in `utf8_paths` the list of paths that should be re-encoded using `
 
 This will simply `fs.writeFile(…, fs.readFile(…, 'binary'), 'utf8')`.
 
-To avoid re-encoding to UTF-8 each time you regenerate your pages (which would break your files, again) a `.fix-utf8.done` file is kept in your output directory. If file is updated, it will be fixed again. If you remove output and generate again, it will be fixed. If you just regenerate and file is not touched, it won't be re-encoded.
+To avoid re-encoding to UTF-8 each time you regenerate your pages (which would break your files, again) a file named `.fix_utf8` stores modified paths, and date of modification (so that re-generated files will be re-fixed). You can safely delete it only if you regenerate your whole project after that.
